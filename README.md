@@ -23,7 +23,7 @@ This is the pin that's connected to the **IN4** input on the L298N board. It ass
 Turn the 'steering wheel' left by amt. This will reduce the speed of the left motor.
 
 ## void turnRight(int8_t amt)
-Turn the 'steering wheel' left by amt. This will reduce the speed of the left motor.
+Turn the 'steering wheel' right by amt. This will reduce the speed of the right motor.
 
 ## void returnToCenter(int increment)
 Emulate caster angle forces, returning the steering wheel to center (increment=0 sets it dead center)

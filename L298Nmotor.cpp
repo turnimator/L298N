@@ -1,7 +1,7 @@
 
 uint8_t _throttle = 0;
 int8_t _steering_wheel = 90; // 90 degrees = straight ahead
-GearBox _gear = PARK; // Start in PARK. We don't want any accidents
+GearShift _gear = PARK; // Start in PARK. We don't want any accidents
 
 void L298Nmotor::setPwm()
 {
@@ -82,7 +82,7 @@ void L298Nmotor::setThrottle(uint8_t newSpeed) {
 	setPwm();
 }
 
-void L298Nmotor::setGear(GearBox lever) {
+void L298Nmotor::setGear(GearShift lever) {
 
 	__gear = lever;
 

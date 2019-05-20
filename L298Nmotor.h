@@ -1,4 +1,6 @@
-enum GearBox {
+#ifndef L298Nmotor_h
+#define L298Nmotor_h
+enum GearShift {
   PARK,
   REVERSE,
   NEUTRAL,
@@ -19,7 +21,7 @@ private:
 
 	uint8_t _throttle = 0;
 	int8_t _steering_wheel = 90; // 90 degrees = straight ahead
-	GearBox _gear = PARK; // Start in PARK. We don't want any accidents
+	GearShift _gear = PARK; // Start in PARK. We don't want any accidents
 
 	void setPwm();
 public:
@@ -28,6 +30,7 @@ public:
 	void turnRight(int8_t amt);
 	void returnToCenter(int increment); // Emulate caster angle forces, returning the steering wheel to center (increment=0 sets it dead center)
 	void setThrottle(uint8_t newSpeed);
-	void setGear(GearBox lever) ;
+	void setGear(GearShift lever) ;
 };
+#endif
 

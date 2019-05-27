@@ -14,10 +14,10 @@ void L298Nmotor::setPwm()
 	uint8_t throttle_right = _throttle;
 	int8_t w = _steering_wheel - 90; // Center at 0
 	if (w < 0) { // Turning left
-		throttle_left = (_throttle * abs(w)) / 100;
+		throttle_left = (_throttle * abs(w)) / 180;
 	}
 	if (w > 0) { // Turning right
-		throttle_right = (_throttle * abs(w)) / 100;
+		throttle_right = (_throttle * abs(w)) / 180;
 	}
 	analogWrite(_motor_r_pwm_pin, throttle_left);
 	analogWrite(_motor_l_pwm_pin, throttle_right);
@@ -45,7 +45,7 @@ L298Nmotor::L298Nmotor(int pwmR, int in1L, int in2R, int pwmL, int in3L, int in4
 }
 
 
-void L298Nmotor::turnLeft(int8_t amt)
+void L298Nmotor::turnLeft(int amt)
 {
 	_steering_wheel += amt;
 	if (_steering_wheel > 180) {
@@ -54,7 +54,7 @@ void L298Nmotor::turnLeft(int8_t amt)
 	setPwm();
 }
 
-void L298Nmotor::turnRight(int8_t amt)
+void L298Nmotor::turnRight(int amt)
 {
 	_steering_wheel -= amt;
 	if (_steering_wheel < 0) {
@@ -63,7 +63,7 @@ void L298Nmotor::turnRight(int8_t amt)
 	setPwm();
 }
 
-void L298Nmotor::returnToCenter(int8_t increment)
+void L298Nmotor::returnToCenter(int increment)
 {
 	if (_steering_wheel == 90){
 		return;
@@ -81,11 +81,20 @@ void L298Nmotor::returnToCenter(int8_t increment)
 	}
 }
 
+int L298Nmotor::getSteeringWheel()
+{
+	return _steering_wheel;
+}
 
-void L298Nmotor::setThrottle(uint8_t newSpeed) 
+void L298Nmotor::setThrottle(unsigned int newSpeed) 
 {
 	_throttle = newSpeed;
 	setPwm();
+}
+
+unsigned int L298Nmotor::getThrottle()
+{
+	return _throttle;
 }
 
 void L298Nmotor::setGear(GearShift lever) 
@@ -149,23 +158,17 @@ GearShift  L298Nmotor::getGear()
 	return _gear;
 }
 
-uint8_t L298Nmotor::getThrottle()
+char* L298Nmotor::getGearString()
 {
-	return _throttle;
-}
 
-char* L298Nmotor::toString()
-{
-	static char s[40];
-	sprintf(s, "%4d %u ", _steering_wheel, _throttle);
 	switch(_gear){
-		case PARK: strcat(s, "P"); break;
-		case REVERSE: strcat(s, "R"); break;
-		case NEUTRAL: strcat(s, "N"); break;
-		case DRIVE: strcat(s, "D"); break;
-		case DRIVE_L: strcat(s, "L"); break;
-		case DRIVE_R: strcat(s, "R"); break;
+		case PARK: return "P"; break;
+		case REVERSE: return "R"; break;
+		case NEUTRAL: return "N"; break;
+		case DRIVE: return "D"; break;
+		case DRIVE_L: return "DL"; break;
+		case DRIVE_R: return "DR"; break;
 	}
-	return s;
+	return "E";
 }
 

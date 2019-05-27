@@ -25,21 +25,22 @@ private:
 	int _motor_l_in3_pin;
 	int _motor_l_in4_pin;
 
-	uint8_t _throttle = 0;
-	int8_t _steering_wheel = 90; // 90 degrees = straight ahead
+	unsigned int _throttle = 0;
+	int _steering_wheel = 90; // 90 degrees = straight ahead
 	GearShift _gear = PARK; // Start in PARK. We don't want any accidents
 
 	void setPwm();
 public:
 	L298Nmotor(int pwmR=6, int in1L=38, int in2R=39, int pwmL=7, int in3L=40, int in4L=41);
-	void turnLeft(int8_t amt);
-	void turnRight(int8_t amt);
-	void returnToCenter(int8_t increment); // Emulate caster angle forces, returning the steering wheel to center (increment=0 sets it dead center)
-	void setThrottle(uint8_t newSpeed);
-	uint8_t getThrottle();
+	void turnLeft(int amt);
+	void turnRight(int amt);
+	void returnToCenter(int increment); // Emulate caster angle forces, returning the steering wheel to center (increment=0 sets it dead center)
+	void setThrottle(unsigned int newSpeed);
+	unsigned int getThrottle();
+	int getSteeringWheel();
 	void setGear(GearShift lever) ;
 	GearShift getGear();
-	char* toString();
+	char *getGearString();
 };
 #endif
 

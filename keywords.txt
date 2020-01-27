@@ -1,12 +1,15 @@
-PARK LITERAL1
-REVERSE LITERAL1
-NEUTRAL LITERAL1
-DRIVE LITERAL1
-DRIVE_L LITERAL1
-DRIVE_R LITERAL1
+#######################################
+# Syntax Coloring Map For L298N
+#######################################
+# Class
+#######################################
 
 L298Nmotor KEYWORD1
 GearShift KEYWORD1
+
+#######################################
+# Methods and Functions
+#######################################
 
 turnLeft KEYWORD2
 turnRight KEYWORD2
@@ -17,4 +20,16 @@ getSteeringWheel KEYWORD2
 setGear KEYWORD2
 getGear KEYWORD2
 getGearString KEYWORD2
+
+
+#######################################
+# Constants
+#######################################
+
+PARK LITERAL1
+REVERSE LITERAL1
+NEUTRAL LITERAL1
+DRIVE LITERAL1
+DRIVE_L LITERAL1
+DRIVE_R LITERAL1
 

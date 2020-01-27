@@ -31,7 +31,7 @@ private:
 
 	void setPwm();
 public:
-	L298Nmotor(int pwmR=6, int in1L=38, int in2R=39, int pwmL=7, int in3L=40, int in4L=41);
+	L298Nmotor(int pwmR=7, int in1L=4, int in2R=5, int pwmL=6, int in3L=12, int in4L=13);
 	void turnLeft(int amt);
 	void turnRight(int amt);
 	void returnToCenter(int increment); // Emulate caster angle forces, returning the steering wheel to center (increment=0 sets it dead center)

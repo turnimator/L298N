@@ -26,12 +26,13 @@ void L298Nmotor::setPwm()
 L298Nmotor::L298Nmotor(int pwmR, int in1R, int in2R, int pwmL, int in3L, int in4L)
 {
 	_motor_r_pwm_pin  = pwmR;
-	_motor_r_in1_pin = in1L;
+	_motor_r_in1_pin = in1R;
 	_motor_r_in2_pin = in2R;
 
 	_motor_l_pwm_pin    = pwmL;
 	_motor_l_in3_pin = in3L;
 	_motor_l_in4_pin = in4L;
+	
 	pinMode(_motor_r_pwm_pin, OUTPUT);
 	pinMode(_motor_r_in1_pin, OUTPUT);
 	pinMode(_motor_r_in2_pin, OUTPUT);

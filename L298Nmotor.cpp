@@ -23,7 +23,7 @@ void L298Nmotor::setPwm()
 	analogWrite(_motor_l_pwm_pin, throttle_right);
 }
 
-L298Nmotor::L298Nmotor(int pwmR, int in1L, int in2R, int pwmL, int in3L, int in4L)
+L298Nmotor::L298Nmotor(int pwmR, int in1R, int in2R, int pwmL, int in3L, int in4L)
 {
 	_motor_r_pwm_pin  = pwmR;
 	_motor_r_in1_pin = in1L;
@@ -86,7 +86,7 @@ int L298Nmotor::getSteeringWheel()
 	return _steering_wheel;
 }
 
-void L298Nmotor::setThrottle(unsigned int newSpeed) 
+void L298Nmotor::setThrottle(unsigned int newSpeed)
 {
 	_throttle = newSpeed;
 	setPwm();
@@ -97,7 +97,7 @@ unsigned int L298Nmotor::getThrottle()
 	return _throttle;
 }
 
-void L298Nmotor::setGear(GearShift lever) 
+void L298Nmotor::setGear(GearShift lever)
 {
 
 	_gear = lever;
@@ -171,4 +171,3 @@ char* L298Nmotor::getGearString()
 	}
 	return "E";
 }
-

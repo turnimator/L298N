@@ -36,6 +36,8 @@ public:
 	void turnRight(int amt);
 	void returnToCenter(int increment); // Emulate caster angle forces, returning the steering wheel to center (increment=0 sets it dead center)
 	void setThrottle(unsigned int newSpeed);
+  void setLeftPwm(int pwm);
+  void setRightPwm(int pwm);
 	unsigned int getThrottle();
 	int getSteeringWheel();
 	void setGear(GearShift lever) ;
@@ -43,4 +45,3 @@ public:
 	char *getGearString();
 };
 #endif
-

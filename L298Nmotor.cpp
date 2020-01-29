@@ -19,6 +19,7 @@ void L298Nmotor::setPwm()
 	if (w > 0) { // Turning left
 		throttle_right = (_throttle * abs(w)) / 180;
 	}
+
 	analogWrite(_motor_r_pwm_pin, throttle_left);
 	analogWrite(_motor_l_pwm_pin, throttle_right);
 }
@@ -32,7 +33,7 @@ L298Nmotor::L298Nmotor(int pwmR, int in1R, int in2R, int pwmL, int in3L, int in4
 	_motor_l_pwm_pin    = pwmL;
 	_motor_l_in3_pin = in3L;
 	_motor_l_in4_pin = in4L;
-	
+
 	pinMode(_motor_r_pwm_pin, OUTPUT);
 	pinMode(_motor_r_in1_pin, OUTPUT);
 	pinMode(_motor_r_in2_pin, OUTPUT);
@@ -91,6 +92,16 @@ void L298Nmotor::setThrottle(unsigned int newSpeed)
 {
 	_throttle = newSpeed;
 	setPwm();
+}
+
+void L298Nmotor::setLeftPwm(int pwm)
+{
+	analogWrite(_motor_l_pwm_pin, pwm);
+}
+
+void L298Nmotor::setRightPwm(int pwm)
+{
+	analogWrite(_motor_r_pwm_pin, pwm);
 }
 
 unsigned int L298Nmotor::getThrottle()

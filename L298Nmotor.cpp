@@ -3,16 +3,16 @@
 //}
 #include "L298Nmotor.h"
 
-
+int8_t _steering_wheel_center = 90;
 uint8_t _throttle = 0;
-int8_t _steering_wheel = 90; // 90 degrees = straight ahead
+int8_t _steering_wheel = _steering_wheel_center; // 90 degrees = straight ahead
 GearShift _gear = PARK; // Start in PARK. We don't want any accidents
 
 void L298Nmotor::setPwm()
 {
 	uint8_t throttle_left = _throttle;
 	uint8_t throttle_right = _throttle;
-	int8_t w = _steering_wheel - 90; // Center at 0
+	int8_t w = _steering_wheel - _steering_wheel_center; // Center at 0
 	if (w < 0) { // Turning right
 		throttle_left = (_throttle * abs(w)) / 180;
 	}
@@ -46,6 +46,9 @@ L298Nmotor::L298Nmotor(int pwmR, int in1R, int in2R, int pwmL, int in3L, int in4
 	_gear = PARK;
 }
 
+void L298Nmotor::calibrateDirection(int amount){
+
+}
 
 void L298Nmotor::turnLeft(int amt)
 {
@@ -67,18 +70,18 @@ void L298Nmotor::turnRight(int amt)
 
 void L298Nmotor::returnToCenter(int increment)
 {
-	if (_steering_wheel == 90){
+	if (_steering_wheel ==_steering_wheel_center){
 		return;
 	}
 	if (increment == 0){
-		_steering_wheel = 90;
+		_steering_wheel = _steering_wheel_center;
 		setPwm();
 		return;
 	}
-	if (_steering_wheel < 90){
+	if (_steering_wheel < _steering_wheel_center){
 		turnRight(increment);
 	}
-	if (_steering_wheel > 90){
+	if (_steering_wheel > _steering_wheel_center){
 		turnLeft(increment);
 	}
 }

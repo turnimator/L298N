@@ -48,6 +48,7 @@ void L298Nmotor::trim(int amount){
 	} else {
  	_trim += amount;
 	}
+	setPwm();
 }
 
 void L298Nmotor::turnLeft(int amt)

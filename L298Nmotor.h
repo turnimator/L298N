@@ -28,6 +28,7 @@ private:
 	unsigned int _throttle = 0;
 	int _steering_wheel = 90; // 90 degrees = straight ahead
 	GearShift _gear = PARK; // Start in PARK. We don't want any accidents
+  int8_t _trim = 0;
 
 	void setPwm();
 public:
@@ -38,6 +39,7 @@ public:
 	void setThrottle(unsigned int newSpeed);
   void setLeftPwm(int pwm);
   void setRightPwm(int pwm);
+  void trim(int amount);
 	unsigned int getThrottle();
 	int getSteeringWheel();
 	void setGear(GearShift lever) ;

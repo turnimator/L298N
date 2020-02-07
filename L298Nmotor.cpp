@@ -8,7 +8,7 @@ void L298Nmotor::setPwm()
 {
 	uint8_t throttle_left = _throttle;
 	uint8_t throttle_right = _throttle;
-	int8_t w = (_steering_wheel - 90) + _trim; // Center at 0, offset trim
+	int8_t w = (_steering_wheel - 90); // Center at 0, offset trim
 	if (w < 0) { // Turning right
 		throttle_left = (_throttle * abs(w)) / 180;
 	}
@@ -16,8 +16,8 @@ void L298Nmotor::setPwm()
 		throttle_right = (_throttle * abs(w)) / 180;
 	}
 
-	analogWrite(_motor_r_pwm_pin, throttle_left);
-	analogWrite(_motor_l_pwm_pin, throttle_right);
+	analogWrite(_motor_r_pwm_pin, throttle_left + _trim);
+	analogWrite(_motor_l_pwm_pin, throttle_right - _trim);
 }
 
 L298Nmotor::L298Nmotor(int pwmR, int in1R, int in2R, int pwmL, int in3L, int in4L)

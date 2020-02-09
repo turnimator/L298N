@@ -53,6 +53,7 @@ void L298Nmotor::trim(int amount){
 
 void L298Nmotor::turnLeft(int amt)
 {
+	_steering_wheel = 90;
 	_steering_wheel += amt;
 	if (_steering_wheel > 180) {
 		_steering_wheel = 180;
@@ -62,6 +63,7 @@ void L298Nmotor::turnLeft(int amt)
 
 void L298Nmotor::turnRight(int amt)
 {
+	_steering_wheel = 90;
 	_steering_wheel -= amt;
 	if (_steering_wheel < 0) {
 		_steering_wheel = 0;
